@@ -44,7 +44,7 @@
     <record model="ir.actions.act_window" id="action_demo_appoval">
         <field name="name">demo appoval</field>
         <field name="res_model">demo.appoval</field>
-        <field name="view_type">form</field>
+        <field name="binding_view_types">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
