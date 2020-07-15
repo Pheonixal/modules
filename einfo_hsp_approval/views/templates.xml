@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="hr_org_chart_assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/einfo_hsp_approval/static/src/js/hr_org_chart.js"></script>
+        </xpath>
+    </template>
+    <record model="ir.ui.view" id="view_tree_einfo_approval_node">
+        <field name="name">Approval node</field>
+        <field name="model">einfo.approval.node</field>
+        <field name="arch" type="xml">
+            <tree string="Approval node" editable="top" >
+                <field name="job" readonly="1"/>
+                <field name="is_node"/>
+                <field name="model_name" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

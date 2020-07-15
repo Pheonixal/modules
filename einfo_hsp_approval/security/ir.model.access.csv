@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_approval_msg,approval_msg,model_approval_msg,,1,1,1,1
+access_einfo_approval,einfo_approval,model_einfo_approval,,1,1,1,1
+access_einfo_approval_node,einfo_approval_node,model_einfo_approval_node,,1,1,0,0
+
+access_demo_appoval,demo_appoval,model_demo_appoval,,1,1,1,1

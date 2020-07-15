@@ -1,0 +1,36 @@
+
+.o_contact_book_tab_partner, .o_contact_book_tab_history {
+    flex-flow: column nowrap;
+    position: relative;
+
+    > ul {
+        padding-left: 0px;
+
+        > li {
+            display: flex;
+            margin-bottom: 10px;
+            cursor: pointer;
+            .row {
+                margin-right: 5px;
+                margin-left: 10px;
+                display: inline-grid;
+                .action{
+                    margin-bottom: 5px;
+                }
+                > img{
+                    margin: auto;
+                }
+            }
+        }
+        .active {
+            background-color: #DFDFDC;
+            border-color: #DFDFDC;
+            .action{
+                display: initial !important;
+            }
+        }
+        > li:hover {
+            background: #dfdfdf;
+        }
+    }
+}

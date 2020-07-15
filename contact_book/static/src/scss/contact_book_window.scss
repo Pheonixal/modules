@@ -1,0 +1,92 @@
+.o_contact_book_window {
+    &.o_contact_book_less {
+        .o_contact_book_top_content {
+            display: inline-flex;
+            margin-top: $o-mmm-chatter-gap*0.5;
+
+            > span:nth-child(1) {
+                margin-left: 5px;
+            }
+            .btn-2x {
+                margin: auto $o-mmm-chatter-gap auto 0px;
+                padding: $o-mmm-chatter-gap*0.5;
+                cursor: pointer;
+                transition: all 150ms linear;
+            }
+        }
+        .o_contact_book_partner_info {
+            display: inline-flex;
+            margin: $o-mmm-chatter-gap*0.5 0 $o-mmm-chatter-gap*1.5;
+
+            .row {
+                display: flex;
+                align-items: baseline;
+                padding-left: $o-mmm-chatter-gap;
+
+                > span {
+                    flex: 0 0 auto;
+                    position: relative;
+                    width: 90%;
+                    display: flex;
+                    margin: $o-mmm-chatter-gap*0.5 0px;
+
+                    > input {
+                        margin-left: 0px;
+                        padding: $o-mmm-chatter-gap*0.5;
+                        padding-left: $o-mmm-chatter-gap*2.5;
+                        flex: 1 1 100%;
+                        max-height: 35px;
+                        max-width: 95%;
+                    }
+                    > span {
+                        margin: auto;
+                        flex: 0 0 auto;
+                        position: relative;
+                        left: $o-mmm-chatter-gap*2;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .o_mmm_contact_book {
+            background-color: $o-webclient-background-color;
+        }
+
+        .o_contact_book_composer {
+            display: none;
+        }
+    }
+
+    .o_contact_book_composer {
+        .o_composer {
+            .o_composer_input {
+                width: 80%;
+                > textarea {
+                    padding: 10px;
+                    font-size: 13px;
+                }
+                @include media-breakpoint-down(sm) {
+                    width: 70%;
+                    > textarea {
+                        padding: 15px 10px;
+                    }
+                }
+            }
+            .o_chatter_composer_tools {
+                @include o-position-absolute($right: 0px, $top: 0px);
+                button {
+                    padding: 10px;
+                    @include media-breakpoint-down(sm) {
+                        padding: 13px;
+                    }
+                    &.btn.fa {
+                        font-size: 1.3em;
+                    }
+                }
+            }
+        }
+        .o_composer_attachments_list {
+            margin: 0px;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="contact_book.tab_contact">
+    <ul>
+        <t t-as="line" t-foreach="widget.lines">
+            <li class="nav-item contact-tab-contact-item" t-att-oe-contact-id="line.id">
+                <span class="row o_contact_book_tab_partner_avatar">
+                    <img width="50px" t-att-src="line.image_small or '/base/static/img/avatar.png'" />
+                </span>
+                <span class="row">
+                    <span class="o_contact_book_tab_partner_display_name"><t t-esc="line.display_name" /></span>
+                    <span class="o_contact_book_tab_partner_phone"><t t-esc="line.phone" /></span>
+                    <span class="o_contact_book_tab_partner_email"><t t-esc="line.email" /></span>
+                    <div class="action d-none">
+                        <a class="btn btn-info btn-view-line" href="#"><i class="fa fa-pencil fa-fw"></i> View</a>
+                        <a class="btn btn-info btn-call-phone" href="#"><i class="fa fa-phone fa-fw"></i> Call</a>
+                        <a class="btn btn-info btn-send-sms" href="#"><i class="fa fa-comment fa-fw"></i> SMS</a>
+                    </div>
+                </span>
+            </li>
+        </t>
+    </ul>
+</t>
+
+</templates>

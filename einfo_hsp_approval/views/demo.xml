@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_form_demo_appoval">
+        <field name="name">demo appoval</field>
+        <field name="model">demo.appoval</field>
+        <field name="arch" type="xml">
+            <form string="demo appoval">
+                <sheet>
+                    <div id="o_employee_container">
+                        <div id="o_employee_main">
+                            <div class="oe_button_box" name="button_box">
+                            </div>
+                            <group>
+                                <field name="approval_state" invisible="1"/>
+                                <field name="name" attrs="{'readonly': [('approval_state', '!=', 'draft')]}"/>
+                                <field name="appoval_msg" attrs="{'readonly': [('approval_state', '!=', 'draft')]}"/>
+                                <field name="start_approval_employee_id" attrs="{'readonly': [('approval_state', '!=', 'draft')]}"/>
+                            </group>
+                          
+                        </div>
+                        <div id="o_employee_right">
+                            <h4 class="o_org_chart_title mb16 mt0">Appoval Flow</h4>
+                            <field name="tem_approval_field" widget="einfo_hr_org_chart"/>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_tree_demo_appoval">
+        <field name="name">demo appoval</field>
+        <field name="model">demo.appoval</field>
+        <field name="arch" type="xml">
+            <tree string="demo appoval">
+                <field name="name"/>
+                <field name="appoval_msg"/>
+                <field name="approval_state"/>
+                <field name="current_approval_employee_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_demo_appoval">
+        <field name="name">demo appoval</field>
+        <field name="res_model">demo.appoval</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_view_demo_appoval"
+        action="action_demo_appoval"
+        parent="hr.menu_human_resources_configuration"
+        name="Approval Demo"
+        sequence="1"/>
+</odoo>

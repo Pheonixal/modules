@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="res.groups" id="access_einfo_hsp_approval_manager">
+        <field name="name">Approver Manager</field>
+    </record>
+
+</odoo>

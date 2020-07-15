@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="contact_book.tab_history">
+    <ul>
+        <t t-as="line" t-foreach="widget.lines">
+            <li class="nav-item contact-tab-history-item" t-att-oe-contact-id="line.id">
+                <span class="row o_contact_book_tab_history_icon btn btn-info">
+                    <i t-attf-class="fa fa-3x #{line.fa_icon ? line.fa_icon: 'fa-history'}" />
+                </span>
+                <span class="row">
+                    <span class="o_contact_book_tab_history_date"><t t-esc="line.date_display" /></span>
+                    <span class="o_contact_book_tab_history_contact_name"><t t-esc="line.contact_name" /></span>
+                    <span class="o_contact_book_tab_history_phone"><t t-esc="line.phone" /></span>
+                </span>
+            </li>
+        </t>
+    </ul>
+</t>
+
+</templates>

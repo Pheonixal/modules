@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="contact book assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+
+            
+            <script type="text/javascript" src="/contact_book/static/src/js/widgets/basic_widget.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/widgets/contact_tab.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/widgets/res_partner.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/widgets/history_tab.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/widgets/contact_book_history.js"></script>
+
+            <script type="text/javascript" src="/contact_book/static/src/js/systray_contact_book.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/contact_book_manager.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/contact_book_service.js"></script>
+            <script type="text/javascript" src="/contact_book/static/src/js/contact_book_view.js"></script>
+
+            <link rel="stylesheet" type="text/scss" href="/contact_book/static/src/scss/variables.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/contact_book/static/src/scss/contact_book.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/contact_book/static/src/scss/contact_book_window.scss"/>
+            <link rel="stylesheet" type="text/scss" href="/contact_book/static/src/scss/contact_book_tab.scss"/>
+        </xpath>
+    </template>
+
+</odoo>

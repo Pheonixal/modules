@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="einfo_einfo_hr_org_chart_employee">
+    <div t-attf-class="o_org_chart_entry o_org_chart_entry_#{employee_type} media">
+        <t t-set="is_self" t-value="employee_type == 'self'"/>
+
+        <div class="o_media_left">
+            <!-- NOTE: Since by the default on not squared images odoo add white borders,
+                use bg-images to get a clean and centred images -->
+            <a t-if="! is_self"
+                class="o_media_object rounded-circle o_employee_redirect"
+                t-att-style="'background-image:url(\'/web/image/hr.employee/' + employee.id + '/image/\')'"
+                t-att-alt="employee.name"
+                t-att-data-employee-id="employee.id"
+                t-att-href="employee.link"/>
+            <div t-if="is_self"
+                class="o_media_object rounded-circle"
+                t-att-style="'background-image:url(\'/web/image/hr.employee/' + employee.id + '/image/\')'"/>
+        </div>
+
+        <div class="media-body">
+            <!-- <span
+                    t-if="employee.indirect_sub_count &gt; 0"
+                    class="badge badge-pill"
+                    tabindex="0"
+                    data-trigger="focus"
+                    t-att-data-emp-name="employee.name"
+                    t-att-data-emp-id="employee.id"
+                    t-att-data-emp-dir-subs="employee.direct_sub_count"
+                    t-att-data-emp-ind-subs="employee.indirect_sub_count"
+                    data-toggle="popover">
+                <t t-esc="employee.indirect_sub_count"/>
+            </span> -->
+
+            <t t-if="!is_self">
+                <a t-att-href="employee.link" class="o_employee_redirect" t-att-data-employee-id="employee.id">
+                    <h5 class="o_media_heading"><b><t t-esc="employee.name"/></b></h5>
+                    <strong><t t-esc="employee.job_name"/></strong>
+                </a>
+            </t>
+            <t t-if="is_self">
+                <h5 class="o_media_heading"><b><t t-esc="employee.name"/></b></h5>
+                <strong><t t-esc="employee.job_name"/></strong>
+            </t>
+            
+        </div>
+        <t t-if="employee.appoval_state === 'APPOVALING'">
+            <t t-if="employee.can_approval == 0">
+                <div>
+                    <strong>Waiting approval</strong>
+                </div>
+            </t>
+            <t t-if="employee.can_approval == 1">
+                <div>
+                        <button class="btn btn-primary o_form_button_edit e_button" type="button" t-att-data-employee-id="employee.id" t-att-data-approval='1' style="position: relative;">Agree</button>
+                        <button class="btn btn-secondary o_form_button_edit e_button" type="button" t-att-data-employee-id="employee.id" t-att-data-approval="0" style="position: relative;">Disagree</button>
+                </div>
+            </t>
+            <t t-if="employee.can_approval == 2">
+                <div>
+                        <button class="btn btn-primary o_form_button_edit e_button" type="button" t-att-data-employee-id="employee.id" t-att-data-approval='2' style="position: relative;">Approval</button>
+                        <button class="btn btn-secondary o_form_button_edit e_button" type="button" t-att-data-employee-id="employee.id" t-att-data-approval="0" style="position: relative;">Disagree</button>
+                </div>
+            </t>
+        </t>
+        <t t-if="employee.appoval_state === 'PASS'">
+            <div>
+                <i class="fa fa-check" style="color:#00a09d"></i>
+                <i><t t-esc="employee.time"/></i>
+            </div>
+        </t>
+        <t t-if="employee.appoval_state === 'UNPASS'">
+            <div>
+                <i class="fa fa-times" style="color:red"></i>
+                <i><t t-esc="employee.time"/></i>
+            </div>
+        </t>
+        <t t-if="employee.appoval_state === 'NONE'">
+        </t>
+    </div>
+</t>
+
+<t t-name="einfo_hr_org_chart">
+    <!-- NOTE: Desidered behaviour:
+            The maximun number of people is always 7 (including 'self'). Managers have priority over suburdinates
+            Eg. 1 Manager + 1 self = show just 5 subordinates (if availables)
+            Eg. 0 Manager + 1 self = show 6 subordinates (if available)
+
+        -->
+    <t t-set="emp_count" t-value="0"/>
+    <div class="o_form_statusbar">
+        <div class="o_statusbar_status o_field_widget o_readonly_modifier" name="state" data-original-title="" title="">
+            <button style="padding-left: 10px;" t-att-class="'btn o_arrow_button disabled btn-' + (approval_state=='unpass' ? 'primary' : 'secondary')"  type="button">
+                Disagree
+            </button>
+            <button style="padding-left: 10px;" t-att-class="'btn o_arrow_button disabled btn-' + (approval_state=='pass' ? 'primary' : 'secondary')"  type="button">
+                Agree
+            </button>
+            <button style="padding-left: 10px;" t-att-class="'btn o_arrow_button disabled btn-' + (approval_state=='approvaling' ? 'primary' : 'secondary')"  type="button">
+                Approvaling
+            </button>
+            <button style="padding-left: 10px;" t-att-class="'btn o_arrow_button disabled btn-' + (approval_state=='draft' ? 'primary' : 'secondary')"  type="button">
+                Draft
+            </button>
+        </div>
+    </div>
+    
+    <div t-if='managers.length &gt; 0' class="o_org_chart_group_up">
+        <t t-if='managers_more'>
+            <div class="o_org_chart_entry o_org_chart_more media">
+                <div class="o_media_left">
+                    <a class="text-center o_employee_redirect"
+                            t-att-href="managers[0].link"
+                            t-att-data-employee-id="managers[0].id">
+                        <i t-attf-class="fa fa-angle-double-up" role="img" aria-label="More managers" title="More managers"/>
+                    </a>
+                </div>
+            </div>
+        </t>
+
+        <t t-foreach="managers" t-as="employee">
+            <t t-set="emp_count" t-value="emp_count + 1"/>
+            <t t-call="einfo_einfo_hr_org_chart_employee">
+                <t t-set="employee_type" t-value="'manager'"/>
+            </t>
+        </t>
+    </div>
+
+    <t t-if="children.length || managers.length" t-call="einfo_einfo_hr_org_chart_employee">
+        <t t-set="employee_type" t-value="'self'"/>
+        <t t-set="employee" t-value="self"/>
+    </t>
+
+    <t t-if="!children.length &amp;&amp; !managers.length">
+        <div class="alert alert-info" role="alert">
+            <p><b>No hierarchy position.</b></p>
+            <p>This employee has no manager or subordinate.</p>
+            <p>In order to get an organigram, set a manager and save the record.</p>
+        </div>
+    </t>
+
+    <div t-if="children.length" class="o_org_chart_group_down">
+        <t t-foreach="children" t-as="employee">
+            <t t-set="emp_count" t-value="emp_count + 1"/>
+            <t t-if="emp_count &lt; 8">
+                <t t-call="einfo_einfo_hr_org_chart_employee">
+                    <t t-set="employee_type" t-value="'sub'"/>
+                </t>
+            </t>
+        </t>
+
+        <t t-if="(children.length + managers.length) &gt; 7">
+            <div class="o_org_chart_entry o_org_chart_more media">
+                <div class="o_media_left">
+                    <a href="#"
+                        t-att-data-employee-id="self.id"
+                        t-att-data-employee-name="self.name"
+                        class="o_org_chart_show_more text-center o_employee_sub_redirect">&#8230;</a>
+                </div>
+            </div>
+        </t>
+    </div>
+    <div t-if="approval_manager == true">
+        <i class="fa fa-cog e_setting" style="float: right;cursor:pointer;"></i>
+    </div>
+</t>
+
+<t t-name="einfo_hr_orgchart_emp_popover">
+    <div class="popover o_org_chart_popup" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>
+</t>
+
+<t t-name="einfo_hr_orgchart_emp_popover_content">
+    <table class="table table-sm">
+        <thead>
+            <td class="text-right"><t t-esc="employee.direct_sub_count"/></td>
+            <td>
+                <a href="#" class="o_employee_sub_redirect" data-type='direct'
+                        t-att-data-employee-name="employee.name" t-att-data-employee-id="employee.id">
+                    <b>Direct subordinates</b></a>
+            </td>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-right">
+                    <t t-esc="employee.indirect_sub_count - employee.direct_sub_count"/>
+                </td>
+                <td>
+                    <a href="#" class="o_employee_sub_redirect" data-type='indirect'
+                            t-att-data-employee-name="employee.name" t-att-data-employee-id="employee.id">
+                        Indirect subordinates</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-right"><t t-esc="employee.indirect_sub_count"/></td>
+                <td>
+                    <a href="#" class="o_employee_sub_redirect" data-type='total'
+                            t-att-data-employee-name="employee.name" t-att-data-employee-id="employee.id">
+                        Total</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</t>
+
+<t t-name="einfo_hr_orgchart_emp_popover_title">
+    <div>
+        <span t-att-style='"background-image:url(\"/web/image/hr.employee/" + employee.id + "/image/\")"'/>
+        <a href="#" class="float-right o_employee_redirect" t-att-data-employee-id="employee.id"><i class="fa fa-external-link" role="img" aria-label='Redirect' title="Redirect"></i></a>
+        <b><t t-esc="employee.name"/></b>
+    </div>
+</t>
+
+</templates>

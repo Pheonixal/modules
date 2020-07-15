@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="contact_book.main_view">
+    <div class="o_contact_book_window o_in_home_menu o_contact_book_less" data-contact_book-id="_blank" style="margin-left: 5px; bottom: 0px;">
+        <div class="o_contact_book_window_header">
+            <span class="o_contact_book_window_title">Contact book</span>
+            <span class="o_contact_book_window_buttons">
+                <a class="o_contact_book_window_close fa fa-close" href="#"></a>
+            </span>
+        </div>
+        <div class="o_mmm_contact_book">
+            <!-- Top content -->
+            <div class="o_contact_book_top_content">
+                <span aria-label="Add or open a customer" class="btn btn-2x btn-info btn-new-customer" role="img" title="Add a customer">
+                    <i class="fa fa-user"></i>
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span aria-label="Add or open an opportunity" class="btn btn-2x btn-info btn-new-opportunity" role="img" title="Add an opportunity">
+                    <i class="fa fa-user-circle-o"></i>
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span aria-label="Send email" class="btn btn-2x btn-info btn-send-email" role="img" title="Send email">
+                    <i class="fa fa-send-o"></i>
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span aria-label="Add an activity" class="btn btn-2x btn-info btn-new-activity" role="img" title="Add an activity">
+                    <i class="fa fa-calendar"></i>
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span aria-label="Add an activity" class="btn btn-danger btn-remove-input invisible" role="img" title="Clear value in the input">
+                    <i class="fa fa-trash-o"></i>
+                </span>
+            </div>
+
+            <!-- Partner's short information -->
+            <div class="o_contact_book_partner_info">
+                <div class="row">
+                    <span class="o_contact_book_partner_info_name_input">
+                        <span class="btn-search-contact-name fa fa-search" title="Name" role="img" aria-label="Name" />
+                        <input type="text" class="ui-autocomplete-input" title="Name" placeholder="Name" autocomplete="off" tabindex="1" autofocus="1"/>
+                    </span>
+                    <span class="o_contact_book_partner_info_email_input">
+                        <span class="fa fa-search" title="Email" role="img" aria-label="Email" />
+                        <input type="text" class="ui-autocomplete-input" title="Email" placeholder="Email" autocomplete="off" tabindex="3"/>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="o_contact_book_partner_info_phone_input">
+                        <span class="fa fa-search" title="Phone" role="img" aria-label="Phone" />
+                        <input type="text" class="ui-autocomplete-input" title="Phone" placeholder="Phone" autocomplete="off" tabindex="2"/>
+                    </span>
+                    <span class="o_contact_book_partner_info_comment_input">
+                        <span class="fa fa-search" title="Note" role="img" aria-label="Note" />
+                        <input type="text" class="ui-autocomplete-input" title="Note" placeholder="Note" autocomplete="off" tabindex="4"/>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a role="tab" href="#o_mmm_contact_book_tab_contact" aria-controls="o_mmm_contact_book_tab_contact" data-toggle="tab" t-attf-class="nav-link#{(!widget.default_tab || widget.default_tab=='contact') ? ' active show' : ''}">Contact</a></li>
+                <li class="nav-item"><a role="tab" href="#o_mmm_contact_book_tab_history" aria-controls="o_mmm_contact_book_tab_history" data-toggle="tab" t-attf-class="nav-link#{widget.default_tab=='history' ? ' active show' : ''}">History</a></li>
+
+                <!-- Dialog panel, will be done in contact_call module -->
+                <li class="nav-item"><a role="tab" href="#o_mmm_contact_book_tab_phone" aria-controls="o_mmm_contact_book_tab_phone" data-toggle="tab" t-attf-class="nav-link#{widget.hasCall ? '' : ' d-none'}">Call Dialog</a></li>
+                <!-- Message composer, will be done in contact_sms module -->
+                <li class="nav-item"><a role="tab" href="#o_mmm_contact_book_tab_sms" aria-controls="o_mmm_contact_book_tab_sms" data-toggle="tab" t-attf-class="nav-link#{widget.hasSMS ? '' : ' d-none'}">SMS Composer</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" t-attf-class="tab-pane fade o_contact_book_tab_partner#{widget.default_tab=='contact' ? ' active show' : ''}" id="o_mmm_contact_book_tab_contact">
+                </div>
+                <div role="tabpanel" t-attf-class="tab-pane fade o_contact_book_tab_history#{widget.default_tab=='history' ? ' active show' : ''}" id="o_mmm_contact_book_tab_history">
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="o_mmm_contact_book_tab_phone">
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="o_mmm_contact_book_tab_sms">
+                </div>
+            </div>
+        </div>
+    </div>
+</t>
+
+</templates>

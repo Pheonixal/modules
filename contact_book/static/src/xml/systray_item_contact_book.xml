@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="contact_book.systray_item">
+        <li t-if="!widget.isMobile and widget.group_incharge" class="o_contact_book_systray_item">
+            <a class="dropdown-toggle o-no-caret" title="Contact Book" href="#">
+                <i class="fa fa-address-book" />
+            </a>
+        </li>
+    </t>
+
+</templates>

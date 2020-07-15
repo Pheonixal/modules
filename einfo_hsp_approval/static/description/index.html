@@ -1,0 +1,77 @@
+<section class="oe_container app">
+    <div class="oe_row oe_spaced" style="max-width: 95%;">
+        <div class="oe_span12">
+            <h2 class="oe_slogan">This module is components to approval (need develop)</h2>
+            <h4 class="mt8">
+                it can approval Bill with flow like the Personnel structure in HR<br>
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                    <img src="1.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <h4 class="mt8">
+                it can set the approval node flexibly(<label style="color: red;">need approval manager security</label>)<br>
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                <img src="3.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <div class="oe_demo oe_screenshot">
+                    <img src="2.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <div class="oe_demo oe_screenshot">
+                <img src="4.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+
+            <h2 class="oe_slogan">How to use</h2>
+            <h4 class="mt8">
+                You need to set the Personnel structure in Employees
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                <img src="5.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <div class="oe_demo oe_screenshot">
+                <img src="6.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+
+            <h2 class="oe_slogan">How to develop</h2>
+            <h4 class="mt8">
+                1. You need to add the depends in your __manifest__.py "einfo_hsp_approval"
+            </h4>
+            <h4 class="mt8">
+                2. Add the  inherit = "einfo.approval" in your model which to approval
+            </h4>
+            <h4 class="mt8">
+                3. modify the views: form and tree
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                <img src="7.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <div class="oe_demo oe_screenshot">
+                <img src="8.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+            <h4 class="mt8">
+                4. You can handle the finish event in <label style="color: red;">on_approval</label> callback function
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                <img src="11.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+
+            <h2 class="oe_slogan">Demo</h2>
+            <h4 class="mt8">
+                That is have a demo in this module which your need to use debug mode to see it in Employees
+            </h4>
+            <div class="oe_demo oe_screenshot">
+                <img src="9.png" style="border:1px solid black"/>
+                <br/>
+            </div>
+        </div>
+    </div>
+</section>
